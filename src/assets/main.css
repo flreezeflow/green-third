@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  font-family: sans-serif;
+}
+
+html{
+  overflow-x: hidden;
+}
+
+header{
+  position: absolute;
+  z-index: 999;
+}
+
+.nav_div ul button{
+  border: none;
+  background-color: white;
+  font-size: 0.9rem;
+}
+
+.line{
+  animation: underline 0.5s linear forwards;
+}
+
+.nav1{
+  animation: showNav 1.5s linear forwards;
+}
+
+.nav2{
+  animation: showNav 1.5s linear forwards;
+}
+
+@keyframes underline {
+  from{
+    width: 0;
+  }
+
+  to{
+    border: 1px solid #1efd00;
+    width: 100%;
+  }
+}
+
+@keyframes showNav {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 100;
+  }
+}
+
+.inputDiv input{
+  width: 80%;
+  margin-left: 10%;
+  outline: none;
+  border: 1px solid #dfdddd;
+}
+
+.inputDiv label{
+  position: absolute;
+  left: 31.5%;
+}
+
+.inputDiv select{
+  margin-left: 10%;
+  border: 1px solid #dfdddd;
+}
+
+.inputDivfile label{
+  position: absolute;
+  left: 25%;
+  width: 50%;
+}
+
+.info{
+  height: 160vh;
+}
+
+.info_div h2{
+ font-size: 110%;
+}
+
+.apply{
+  position: absolute;
+  top: 320%;
+}
+
+.apply_div{
+  z-index: 999;
+}
+
+.apply_div{
+  margin-left: 20%;
+}
+
+.buttons button{
+  margin-left: 50%;
+}
+
+.about{
+  z-index: -50;
+  margin-top: 75vh;
+}
+
+.about img{
+  height: 150vh;
+  filter: blur(3px);
+}
+
+.about_layer{
+  height: 150vh;
+}
+
+.about_line{
+  height: 1px;
+}
+
+.interlude{
+  top: 410vh;
+  z-index: 99;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0px 16px 20px -10px;
+}
