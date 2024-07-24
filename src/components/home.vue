@@ -35,7 +35,7 @@
         </p>
         <input
           type="range"
-          min="0"
+          min="1"
           max="5"
           step="1"
           v-model="months"
@@ -51,33 +51,32 @@
         </div>
       </div>
 
-      <div class="mt-10 flex flex-row">
+      <div class="mt-5 flex flex-row">
         <p class="font-semibold">Note:</p>
-        <p class="text-red-800">This is an estimation, for exact amounts please contact us</p>
+        <p class="text-red-800">This amount might change once your loan is approved</p>
       </div>
-
-      <div class="mt-16 m-0 w-full">
-        <p class="underline decoration-greenline decoration-2">*Check out how our calculator works</p>
-      </div>
-    </div> 
+    </div>
   </div>
   
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed } from 'vue';
 
-const amount1 = ref(500)
-const months = ref(0)
-const rate = 2
+const amount1 = ref(500); // Principal loan amount
+const months = ref(1); // Number of repayment months
+const rate = 0.2; // Interest rate (20%)
 
 const installments = computed(() => {
   if (months.value <= 0) {
-    return amount1.value
+    return amount1.value; // Immediate payment, no interest calculation
   } else {
-    return (amount1.value * rate) * months.value
+    const interest = parseFloat(amount1.value) * rate; // Calculate the interest
+    const totalAmount = parseFloat(amount1.value) + interest; // Total amount including interest
+    return totalAmount / months.value; // Monthly installment amount
   }
-})
+});
+
 </script>
 
 <style>

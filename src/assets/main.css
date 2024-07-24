@@ -77,24 +77,21 @@ header{
 }
 
 .info{
-  height: 160vh;
+  height: 140vh;
 }
 
 .info_div h2{
  font-size: 110%;
 }
 
-.apply{
-  position: absolute;
-  top: 320%;
-}
-
-.apply_div{
-  z-index: 999;
-}
-
 .apply_div{
   margin-left: 20%;
+}
+
+.apply{
+  height: 120%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .buttons button{
@@ -103,7 +100,6 @@ header{
 
 .about{
   z-index: -50;
-  margin-top: 75vh;
 }
 
 .about img{

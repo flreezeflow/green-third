@@ -26,8 +26,9 @@
         </div>
 
         <div @click="changeNav" v-if="nav === 'nav'" class="nav2 flex flex-row justify-between align-center">
-          <div class="logo border">
-            <!-- <img src="./assets/Asset 19-20.jpg" alt="" class="w-34"> -->
+          <div class="logo">
+            <!-- <img src="./assets/Asset 19-20.jpg" alt="" class="w-4/5"> -->
+            <p class="text-2xl">Logo here</p>
           </div>
           <div class="burgers mr-5 mt-3">
             <div class="ml-2 w-4 border border-greenline border-solid"></div>
@@ -39,16 +40,14 @@
     </div>
   </header>
 
-   <div class="grid grid-cols-1 md:grid-rows-2">
+  <div class="grid grid-cols-1 md:grid-rows-2">
     <div class="home w-screen mt-1">
       <home/>
     </div>
-    
    <div class="info w-screen">
       <info/>
     </div>
-    <div class="interlude bg-white w-screen h-20 absolute"></div>
-    <div class="apply w-screen">
+    <div class="shadow-lg apply bg-gradient-to-b from-greenline from-20% via-white via-10% to-white to-60% w-screen">
       <apply/>
     </div>
     <div class="about w-screen">

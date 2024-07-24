@@ -1,5 +1,5 @@
 <template>
-    <div class="shadow-lg w-full min-h-screen max-h-fit">
+    <div class="">
         <form @submit.prevent="handleSubmit" class="">
             <div class="apply_div rounded shadow-xl w-3/5 bg-white h-fit flex flex-col gap-4">
                 <div class="inputDiv mt-7">
@@ -15,26 +15,9 @@
                 </div>
 
                 <div class="inputDiv">
-                    <label :for="mStatus">{{ mStatusLabel }}</label>
-                    <select id="mStatus" v-model="mStatus" class="w-4/5 h-6 outline-none" @focus="eraseLabel('mStatus')" @blur="restoreLabel('mStatus')">
-                        <option value="married">Married</option>
-                        <option value="single">Single</option>
-                        <option value="divorced">Divorced</option>
-                        <option value="widowed">Widowed</option>
-                    </select>
-                    <p v-if="errors.mStatus" class="text-red-500 text-sm text-center">{{ errors.mStatus }}</p>
-                </div>
-
-                <div class="inputDiv">
                     <label :for="mobileNum">{{ mobileNumLabel }}</label>
                     <input type="text" id="mobileNum" v-model="mobileNum" @focus="eraseLabel('mobileNum')" @blur="restoreLabel('mobileNum')">
                     <p v-if="errors.mobileNum" class="text-red-500 text-sm text-center">{{ errors.mobileNum }}</p>
-                </div>
-
-                <div class="inputDiv">
-                    <label :for="idNum">{{ idNumLabel }}</label>
-                    <input type="text" id="idNum" v-model="idNum" @focus="eraseLabel('idNum')" @blur="restoreLabel('idNum')">
-                    <p v-if="errors.idNum" class="text-red-500 text-sm text-center">{{ errors.idNum }}</p>
                 </div>
 
                 <div class="inputDivfile">
@@ -84,7 +67,7 @@ const nameLabel = ref('Full Name');
 const mobileNumLabel = ref('Mobile Number');
 const idNumLabel = ref('Id Number');
 const mStatusLabel = ref('Marital Status');
-const emailLabel = ref('Email');
+const emailLabel = ref('Email(optional)');
 const namibianIdLabel = ref('Upload Namibian ID');
 const bankStatementLabel = ref('Bank Statement');
 const paySlipLabel = ref('Upload Pay Slip');
@@ -267,7 +250,7 @@ const restoreLabel = (field) => {
             if (mStatus.value === '') mStatusLabel.value = 'Marital Status';
             break;
         case 'email':
-            if (email.value === '') emailLabel.value = 'Email';
+            if (email.value === '') emailLabel.value = 'Email(optional)';
             break;
     }
 };
