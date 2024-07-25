@@ -1,9 +1,11 @@
 <template>
-    <div class="info w-screen bg-greenline">
+    <div class="info w-screen mb-8">
         <div class=" flex flex-col gap-16 justify-center">
             <div class="info_div mt-20 ml-5">
-                <h2 class="underline ">What You Need To Apply</h2>
-                
+                <div class="flex flex-row gap-1">
+                    <h2 class="">What You Need</h2>
+                    <h2 class="text-white">To Apply</h2>
+                </div>
                 <div class="w-4/5 flex flex-row justify-between items-center gap-2 ml-5">
                     
                     <div class="w-4/5">
@@ -26,10 +28,11 @@
                 </div>
             </div>
             
-
-
             <div class="info_div">
-                <h2 class="underline text-end mr-6">How Our Calculator Works</h2>
+                <div class="flex flex-row justify-end gap-1">
+                  <h2 class="">How Our</h2>
+                  <h2 class="mr-6 text-white">Calculator Works</h2> 
+                </div>
                 
                 <div class="flex flex-row justify-between items-center gap-3 mr-5">
                     <div class="mx-10 w-2/5">
@@ -38,7 +41,7 @@
                     
                     <div class=" w-4/5">
                         <div class="flex flex-row">
-                            <div class="mt-3 w-2/5">
+                            <div class="mt-3 w-3/5">
                                 <div class="info_line border border-white w-0 h-full"></div>
                             </div>
                             <ul class="mt-3 flex flex-col gap-3 list-disc">
@@ -50,10 +53,12 @@
                 </div>
             </div>
             
-
-
             <div class="info_div ml-5">
-                <h2 class="underline ml-5">After you apply</h2>
+                <div class="flex flex-row gap-1">
+                    <h2 class="ml-6">After You</h2>
+                    <h2 class="text-white">Apply</h2>
+                </div>
+                
                 <div class="flex flex-row justify-between items-center ml-5">
                     <div class="w-3/5">
                         <div class="flex flex-row">
@@ -72,8 +77,6 @@
                     </div>
                 </div> 
             </div>
-            
-
         </div>
     </div>
     

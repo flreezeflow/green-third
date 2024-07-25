@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'greenline': '#1efd00'
+        'greenline': '#19d300'
       }
     },
   },

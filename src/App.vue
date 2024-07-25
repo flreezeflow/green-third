@@ -41,10 +41,14 @@
   </header>
 
   <div class="grid grid-cols-1 md:grid-rows-2">
-    <div class="home w-screen mt-1">
+    <div class="shadow-lg home w-screen mt-1 bg-white">
       <home/>
     </div>
-   <div class="info w-screen">
+    <div class="trans-pic shadow-inner w-screen h-4/5 absolute flex justify-center items-center">
+      <div class="z-10 absolute"></div>
+      <img src="./assets/money pic.jpg" alt="" class="h-3/5 w-screen fixed">
+    </div>
+    <div class="info mt-64 w-screen h-fit">
       <info/>
     </div>
     <div class="shadow-lg apply bg-gradient-to-b from-greenline from-20% via-white via-10% to-white to-60% w-screen">
