@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'greenline': '#19d300'
+        'greenline': '#19d300',
+        'limegreen' : '#1eff00'
       }
     },
   },

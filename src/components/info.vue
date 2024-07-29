@@ -19,7 +19,7 @@
                             <div class="mt-3 w-3/5">
                                 <div class="border border-white w-0 h-full"></div>
                             </div>
-                        </div> 
+                        </div>
                     </div>
 
                     <div class="mr-2 1/5">

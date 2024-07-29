@@ -1,10 +1,10 @@
 <template>
-  <div class="grid grid-cols-1 grid-rows-3 h-fit">
+  <div class="grid grid-cols-1 grid-rows-3">
     <div class="ad mt-10 h-72 row-span-1">
       <div class="absolute top-48 bg-white z-40 h-32 rounded-b-lg shadow-xl w-screen flex flex-col justify-center">
         <p class="text-center text-md ">Use our loan calculator to guage how big of a loan is convenient for your purposes</p>
       </div>
-      <div class="bg-greenline w-screen h-36 absolute opacity-50 shadow-inner">
+      <div class="bg-limegreen w-screen h-36 absolute opacity-40 shadow-inner">
         <p class="mt-16 text-center font-semibold">
           Everyday loans for the average joe
         </p>

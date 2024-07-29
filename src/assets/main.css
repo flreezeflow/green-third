@@ -39,7 +39,7 @@ header{
   }
 
   to{
-    border: 1px solid #19d300;
+    border: 1px solid #1eff00;
     width: 100%;
   }
 }
@@ -65,6 +65,13 @@ header{
   border: 1px solid #dfdddd;
 }
 
+.inputDiv .error{
+  width: 80%;
+  margin-left: 10%;
+  outline: none;
+  border: 1px solid red;
+}
+
 .inputDiv label{
   position: absolute;
   left: 31.5%;
@@ -77,8 +84,8 @@ header{
 
 .inputDivfile label{
   position: absolute;
-  left: 25%;
-  width: 50%;
+  left: 26%;
+  width: 48%;
 }
 
 .info{
@@ -104,7 +111,7 @@ header{
 }
 
 .buttons button{
-  margin-left: 50%;
+  margin-left: 10%;
 }
 
 .about{

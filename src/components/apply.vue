@@ -4,42 +4,42 @@
             <div class="apply_div rounded shadow-xl w-3/5 bg-white h-fit flex flex-col gap-4">
                 <div class="inputDiv mt-7">
                     <label :for="name">{{ nameLabel }}</label>
-                    <input type="text" id="name" v-model="name" @focus="eraseLabel('name')" @blur="restoreLabel('name')">
+                    <input :class="nameInput" type="text" id="name" v-model="name" @focus="eraseLabel('name')" @blur="restoreLabel('name')">
                     <p v-if="errors.name" class="text-red-500 text-sm text-center">{{ errors.name }}</p>
                 </div>
 
                 <div class="inputDiv">
                     <label :for="email">{{ emailLabel }}</label>
-                    <input type="text" id="email" v-model="email" @focus="eraseLabel('email')" @blur="restoreLabel('email')">
+                    <input :class="emailInput" type="text" id="email" v-model="email" @focus="eraseLabel('email')" @blur="restoreLabel('email')">
                     <p v-if="errors.email" class="text-red-500 text-sm text-center">{{ errors.email }}</p>
                 </div>
 
                 <div class="inputDiv">
                     <label :for="mobileNum">{{ mobileNumLabel }}</label>
-                    <input type="text" id="mobileNum" v-model="mobileNum" @focus="eraseLabel('mobileNum')" @blur="restoreLabel('mobileNum')">
+                    <input :class="mobileInput" type="text" id="mobileNum" v-model="mobileNum" @focus="eraseLabel('mobileNum')" @blur="restoreLabel('mobileNum')">
                     <p v-if="errors.mobileNum" class="text-red-500 text-sm text-center">{{ errors.mobileNum }}</p>
                 </div>
 
                 <div class="inputDivfile">
-                    <label :for="namibianId" class="block border border-greenline cursor-pointe text-center">{{ namibianIdLabel }}</label>
+                    <label :for="namibianId" :class="idStyle" class="block border cursor-pointe text-center">{{ namibianIdLabel }}</label>
                     <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="namibianId" @change="validateFile($event, 'namibianId')">
                     <p v-if="errors.namibianId" class="text-red-500 text-sm text-center">{{ errors.namibianId }}</p>
                 </div>
 
                 <div class="inputDivfile">
-                    <label :for="bankStatement" class="block border border-greenline cursor-pointe text-center">{{ bankStatementLabel }}</label>
+                    <label :for="bankStatement" :class="bankStatementStyle" class="block border cursor-pointe text-center">{{ bankStatementLabel }}</label>
                     <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="bankStatement" @change="validateFile($event, 'bankStatement')">
                     <p v-if="errors.bankStatement" class="text-red-500 text-sm text-center">{{ errors.bankStatement }}</p>
                 </div>
 
                 <div class="inputDivfile">
-                    <label :for="paySlip" class="block border border-greenline cursor-pointe text-center">{{ paySlipLabel }}</label>
+                    <label :for="paySlip" :class="paySlipStyle" class="block border cursor-pointe text-center">{{ paySlipLabel }}</label>
                     <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="paySlip" @change="validateFile($event, 'paySlip')">
                     <p v-if="errors.paySlip" class="text-red-500 text-sm text-center">{{ errors.paySlip }}</p>
                 </div>
-
+                <p class="text-center font-semibold">All docs must be in PDF format</p>
                 <div class="buttons">
-                    <button type="submit" class="bg-greenline text-center w-2/5 mb-3 rounded">Apply</button>
+                    <button type="submit" class="bg-limegreen text-center w-4/5 mb-3 rounded">Apply</button>
                 </div>
             </div>
         </form>
@@ -71,6 +71,14 @@ const emailLabel = ref('Email(optional)');
 const namibianIdLabel = ref('Upload Namibian ID');
 const bankStatementLabel = ref('Bank Statement');
 const paySlipLabel = ref('Upload Pay Slip');
+
+// Input classes
+const nameInput = ref('input')
+const emailInput = ref('input')
+const mobileInput = ref('input')
+const idStyle = ref('border-gray-300')
+const bankStatementStyle = ref('border-gray-300')
+const paySlipStyle = ref('border-gray-300')
 
 const errors = ref({
     name: '',
@@ -114,41 +122,33 @@ const clearErrors = () => {
 const validateInfo = () => {
     let isValid = true;
     if (!name.value) {
-        errors.value.name = `*Please fill out this field.`;
+        nameInput.value = 'error';
         isValid = false;
     }
     if (!mobileNum.value) {
-        errors.value.mobileNum = `*Please fill out this field.`;
+        mobileInput.value = 'error';
         isValid = false;
     } else if (!isValidMobileNum(mobileNum.value)) {
-        errors.value.mobileNum = `*Please enter a valid Namibian mobile number.`;
-        isValid = false;
-    }
-    if (!idNum.value) {
-        errors.value.idNum = `*Please fill out this field.`;
-        isValid = false;
-    }
-    if (!mStatus.value) {
-        errors.value.mStatus = `*Please select a marital status.`;
+        errors.value.mobileNum = `Invalid mobile number.`;
         isValid = false;
     }
     if (!email.value) {
-        errors.value.email = `*Please fill out this field.`;
+        emailInput.value = 'error';
         isValid = false;
     } else if (!isValidEmail(email.value)) {
-        errors.value.email = `*Please enter a valid email address.`;
+        errors.value.email = `Invalid email address.`;
         isValid = false;
     }
     if (!namibianId.value) {
-        errors.value.namibianId = `*Please upload a Namibian ID in PDF format.`;
+        idStyle.value = `border-red-500`;
         isValid = false;
     }
     if (!bankStatement.value) {
-        errors.value.bankStatement = `*Please upload a Bank Statement in PDF format.`;
+        bankStatementStyle.value = `border-red-500`;
         isValid = false;
     }
     if (!paySlip.value) {
-        errors.value.paySlip = `*Please upload a Pay Slip in PDF format.`;
+        paySlipStyle.value = `border-red-500`;
         isValid = false;
     }
     return isValid;
@@ -199,17 +199,17 @@ const validateFile = (event, field) => {
             case 'namibianId':
                 namibianId.value = null;
                 namibianIdLabel.value = 'Upload Namibian ID';
-                errors.value.namibianId = `*Please upload a Namibian ID in PDF format.`;
+                errors.value.namibianId = `Not in PDF format.`;
                 break;
             case 'bankStatement':
                 bankStatement.value = null;
                 bankStatementLabel.value = 'Upload Bank Statement';
-                errors.value.bankStatement = `*Please upload a Bank Statement in PDF format.`;
+                errors.value.bankStatement = `Not in PDF format.`;
                 break;
             case 'paySlip':
                 paySlip.value = null;
                 paySlipLabel.value = 'Upload Pay Slip';
-                errors.value.paySlip = `*Please upload a Pay Slip in PDF format.`;
+                errors.value.paySlip = `Not in PDF format.`;
                 break;
         }
     }
