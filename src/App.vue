@@ -29,10 +29,12 @@
     <div class="shadow-lg bg-white apply bg-gradient-to-b from-greenline from-20% lg:from-40% via-white via-10% to-white to-60% w-screen">
       <apply/>
     </div>
-    <div class="about w-screen">
-      <about/>
+    <div class="about w-screen bg-greenline">
+      <div class="about_layer">
+        <about/>
+      </div>
     </div>
-    <div class="footer bg-greenline w-screen z-50 lg:mt-16">
+    <div class="footer bg-greenline w-screen z-50 md:mt-8">
       <greenlinefooter/>
     </div>
   </div>

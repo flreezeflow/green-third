@@ -1,7 +1,7 @@
 <template>
-    <img src="../assets/ea7b9104-4d1c-407f-9731-9d6393c0d7d6.jpg" alt="" class="absolute -z-30">
-    <div class="about_layer bg-greenline w-screen h-screen absolute -z-20 opacity-25"></div>
-    <div class="about_div mt-28 md:mt-32 lg:mt-28">
+    <img src="../assets/ea7b9104-4d1c-407f-9731-9d6393c0d7d6.jpg" alt="" class="fixed -z-30">
+    <!-- <div class="about_layer bg-greenline w-screen absolute h-screen -z-20 opacity-25"></div> -->
+    <div class="about_div md:mt-32 lg:mt-28">
         <h2 class="text-center text-2xl lg:text-3xl">Why work with Greenline Financials?</h2>
         <div class="lg:flex flex-row">
             <div class="flex flex-col justify-center items-center gap-2 mt-10">
