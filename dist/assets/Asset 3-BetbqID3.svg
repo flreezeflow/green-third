@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 507.1 132.83">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 23px;
+      }
+
+      .cls-1, .cls-2 {
+        font-family: sans-serif;
+      }
+
+      .cls-2 {
+        font-size: 67px;
+        letter-spacing: .11em;
+      }
+
+      .cls-3 {
+        fill: lime;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <rect class="cls-3" x="2" y="26.37" width="99.3" height="7.45" rx=".88" ry=".88"/>
+      <rect class="cls-3" x="0" y="114.37" width="99.3" height="7.45" rx=".88" ry=".88"/>
+      <rect class="cls-3" x="350.8" y="26.37" width="99.3" height="7.45" rx=".88" ry=".88" transform="translate(910.91 60.2) rotate(180)"/>
+      <rect class="cls-3" x="350.8" y="114.37" width="99.3" height="7.45" rx=".88" ry=".88" transform="translate(914.91 236.2) rotate(180)"/>
+      <rect class="cls-3" x=".3" y="70.48" width="560" height="7.45" rx=".88" ry=".88"/>
+      <text class="cls-1" transform="translate(112.44 127.08) scale(1.14 1)"><tspan x="0" y="0">FINANCIAL SOLUTIONS CC</tspan></text>
+      <text class="cls-2" transform="translate(117.41 56.08) scale(.78 1)"><tspan x="0" y="0">GREENLINE</tspan></text>
+    </g>
+  </g>
+</svg>
