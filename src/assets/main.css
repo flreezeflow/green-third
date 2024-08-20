@@ -89,12 +89,12 @@ header{
 }
 
 .about img{
-  height: 165vh;
+  height: 110vh;
   filter: blur(3px);
 }
 
 .about_layer{
-  height: 165vh;
+  height: 110vh;
 }
 
 .about_line{
