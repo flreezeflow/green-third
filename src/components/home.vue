@@ -1,61 +1,76 @@
 <template>
-  <div class="grid grid-cols-1 grid-rows-3">
-    <div class="ad mt-10 h-72 row-span-1">
-      <div class="absolute top-48 bg-white z-40 h-32 rounded-b-lg shadow-xl w-screen flex flex-col justify-center">
-        <p class="text-center text-md ">Use our loan calculator to guage how big of a loan is convenient for your purposes</p>
-      </div>
-      <div class="bg-limegreen w-screen h-36 absolute opacity-40 shadow-inner">
+  <div class="grid grid-cols-1 grid-rows-1 lg:grid-rows-1">
+    <div class="ad w-screen mt-10 h-fit row-span-1">
+      <div class="bg-limegreen w-screen h-36 lg:h-44 absolute opacity-40">
         <p class="mt-16 text-center font-semibold">
           Everyday loans for the average joe
         </p>
       </div>
-      <img class="w-full h-36" src="../assets/piggy bank.jpg" alt="money">
-    </div>
-    <div class="flex flex-col items-center p-4 row-span-2">
-      <div class="bg-gray-100 w-4/5 h-32 shadow-xl rounded-xl flex justify-center flex-col">
-        <p class="text-center mt-4 text-md">
-          Loan Amount: N${{ amount1 }}
-        </p>
-        <input
-          type="range"
-          min="500"
-          max="3000"
-          step="50"
-          v-model="amount1"
-          class="slider1 w-4/5 ml-7 mt-12 appearance-none h-2 bg-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-
-      <div class="w-4/5 h-44 rounded-xl ">
-        <p class="text-center mt-4 text-lg">
-          Repayment terms:
-        </p>
-        <p class="text-center mt-2">
-          {{ months }} Month/s
-        </p>
-        <input
-          type="range"
-          min="1"
-          max="5"
-          step="1"
-          v-model="months"
-          class="slider2 w-4/5 ml-7 mt-12 appearance-none h-2 bg-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-
-      <div class="w-screan rounded-md h-20 flex flex-col justify-center ">
-        <p class="ml-1">Monthly Installments</p>
-        
-        <div class="border border-greenline w-full h-10 flex items-center rounded-lg">
-          <p class="ml-1">N$ {{ installments }}</p>
+      <img class="w-full h-36 lg:h-44" src="../assets/piggy bank.jpg" alt="money">
+      <div class="flex justify-center items-center">
+        <div class="lg:absolute top-48 bg-white z-40 h-32 rounded-b-lg shadow-xl lg:w-4/5 w-screen rounded-lg flex flex-col justify-center">
+          <p class="text-center text-md ">Use our loan calculator to guage how big of a loan is convenient for your purposes</p>
         </div>
       </div>
+    </div>
+    
+    <div class="flex flex-col lg:flex-row w-screen">
+      <!-- <div class="w-1/5 h-full flex items-center">
+        <div v-if="width === 'non-mobile'" class="-z-10 h-full rounded-br-lg rounded-tr-lg shadow-lg  bg-white">
+          <p class="text-md ">Use our loan calculator to guage how big of a loan is convenient for your purposes</p>
+        </div>
+      </div> -->
 
-      <div class="mt-5 flex flex-row">
-        <p class="font-semibold">Note:</p>
-        <p class="text-red-800">This amount might change once your loan is approved</p>
+      <div class="lg:mt-28 flex flex-col justify-center items-center max-lg:p-4 lg:w-screen">
+        <div class="bg-gray-100 w-4/5 lg:w-2/5 h-32 mt-5 shadow-xl rounded-xl flex justify-center items-center flex-col">
+          <p class="text-center mt-4 text-md">
+            Loan Amount: N${{ amount1 }}
+          </p>
+          <input
+            type="range"
+            min="500"
+            max="3000"
+            step="50"
+            v-model="amount1"
+            class="slider1 w-4/5 lg:w-3/5 mt-12 appearance-none h-2 bg-gray-300 rounded-lg outline-none "
+          />
+        </div>
+
+        <div class="flex flex-col justify-center items-center max-lg:w-4/5 w-2/5 h-32 lg:h-32 rounded-xl lg:mt-5">
+          <div>
+            <p class="text-center mt-4 text-lg">
+              Repayment terms:
+            </p>
+            <p class="text-center mt-2">
+              {{ months }} Month/s
+            </p>
+          </div>
+          
+          <input
+            type="range"
+            min="1"
+            max="5"
+            step="1"
+            v-model="months"
+            class="slider2 w-4/5 lg:w-3/5 max-lg:ml-7 mt-5 appearance-none h-2 bg-gray-300 rounded-lg outline-none"
+          />
+        </div>
+
+        <div class="w-screen rounded-md h-20 flex flex-col justify-center items-center">
+          <p class="ml-1">Monthly Installments</p>
+          
+          <div class="border border-greenline w-1/5 lg:w-1/6 h-10 flex items-center rounded-lg">
+            <p class="ml-1 lg:text-lg ">N$ {{ installments }}</p>
+          </div>
+        </div>
+        
+        <div class="mt-5 lg:mb-5 flex flex-row">
+          <p class="font-semibold">Note:</p>
+          <p class="text-red-800">This amount might change once your loan is approved</p>
+        </div>
       </div>
     </div>
+
   </div>
   
 </template>
@@ -66,6 +81,13 @@ import { ref, computed } from 'vue';
 const amount1 = ref(500); // Principal loan amount
 const months = ref(1); // Number of repayment months
 const rate = 0.2; // Interest rate (20%)
+const width = computed(() =>{
+  if(window.innerWidth < 1024){
+    return 'mobile'
+  }else{
+    return 'non-mobile'
+  }
+});
 
 const installments = computed(() => {
   if (months.value <= 0) {
