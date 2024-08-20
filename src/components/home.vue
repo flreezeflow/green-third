@@ -52,7 +52,7 @@
             max="5"
             step="1"
             v-model="months"
-            class="slider2 w-4/5 lg:w-3/5 max-lg:ml-7 mt-5 appearance-none h-2 bg-gray-300 rounded-lg outline-none"
+            class="slider2 w-4/5 lg:w-3/5 mt-5 appearance-none h-2 bg-gray-300 rounded-lg outline-none"
           />
         </div>
 

@@ -33,19 +33,19 @@
                 </div>
 
                 <div class="inputDivfile">
-                    <label :for="namibianId" :class="idStyle" class="block border cursor-pointe text-center">{{ namibianIdLabel }}</label>
+                    <label :for="namibianId" :class="idStyle" class="block border rounded cursor-pointe text-center"><font-awesome-icon v-if="idStyle != 'border-red-500' || idStyle != 'border-limegreen'" :icon="['fas', 'upload']" :class="i_icon" class="text-black" /> {{ namibianIdLabel }}</label>
                     <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="namibianId" @change="validateFile($event, 'namibianId')">
                     <p v-if="errors.namibianId" class="text-red-500 text-sm text-center">{{ errors.namibianId }}</p>
                 </div>
 
                 <div class="inputDivfile">
-                    <label :for="bankStatement" :class="bankStatementStyle" class="block border cursor-pointe text-center">{{ bankStatementLabel }}</label>
+                    <label :for="bankStatement" :class="bankStatementStyle" class="block border rounded cursor-pointe text-center"><font-awesome-icon :icon="['fas', 'upload']" :class="b_icon" class="text-black" /> {{ bankStatementLabel }}</label>
                     <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="bankStatement" @change="validateFile($event, 'bankStatement')">
                     <p v-if="errors.bankStatement" class="text-red-500 text-sm text-center">{{ errors.bankStatement }}</p>
                 </div>
 
                 <div class="inputDivfile">
-                    <label :for="paySlip" :class="paySlipStyle" class="block border cursor-pointe text-center">{{ paySlipLabel }}</label>
+                    <label :for="paySlip" :class="paySlipStyle" class="block border rounded cursor-pointe text-center"><font-awesome-icon :icon="['fas', 'upload']" :class="p_icon"  class="text-black" /> {{ paySlipLabel }}</label>
                     <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="paySlip" @change="validateFile($event, 'paySlip')">
                     <p v-if="errors.paySlip" class="text-red-500 text-sm text-center">{{ errors.paySlip }}</p>
                 </div>
@@ -63,6 +63,9 @@ import { ref } from 'vue';
 import axios from 'axios';
 
 let applyState = ref('apply');
+let i_icon = ref(); 
+let b_icon = ref();
+let p_icon = ref();
 
 // Personal info
 const name = ref('');
@@ -77,12 +80,12 @@ const paySlip = ref(null);
 // Labels
 const nameLabel = ref('Full Name');
 const mobileNumLabel = ref('Mobile Number');
-const amountLabel = ref('Amount(max-N$3000)');
-const installmentsLabel = ref('Installments(max-5)');
+const amountLabel = ref('Amount');
+const installmentsLabel = ref('Installments');
 const emailLabel = ref('Email(optional)');
-const namibianIdLabel = ref('Upload Namibian ID');
+const namibianIdLabel = ref('ID');
 const bankStatementLabel = ref('Bank Statement');
-const paySlipLabel = ref('Upload Pay Slip');
+const paySlipLabel = ref('Pay Slip');
 const applyInfo = ref('All docs must be in PDF format');
 
 // Input classes
@@ -114,18 +117,21 @@ const validateFile = (event, field) => {
                 namibianId.value = file;
                 namibianIdLabel.value = file.name;
                 idStyle.value = 'border-limegreen';
+                i_icon.value = 'text-limegreen'
                 errors.value.namibianId = '';
                 break;
             case 'bankStatement':
                 bankStatement.value = file;
                 bankStatementLabel.value = file.name;
                 bankStatementStyle.value = 'border-limegreen'
+                b_icon.value = 'text-limegreen'
                 errors.value.bankStatement = '';
                 break;
             case 'paySlip':
                 paySlip.value = file;
                 paySlipLabel.value = file.name;
                 paySlipStyle.value = 'border-limegreen'
+                p_icon = 'text-limegreen'
                 errors.value.paySlip = '';
                 break;
         }
@@ -133,20 +139,23 @@ const validateFile = (event, field) => {
         switch (field) {
             case 'namibianId':
                 namibianId.value = null;
-                namibianIdLabel.value = 'Upload Namibian ID';
+                namibianIdLabel.value = 'ID';
                 idStyle.value = 'border-red-500'
+                i_icon.value = 'text-red-500'
                 errors.value.namibianId = 'Not in PDF format.';
                 break;
             case 'bankStatement':
                 bankStatement.value = null;
                 bankStatementLabel.value = 'Upload Bank Statement';
                 bankStatementStyle.value = 'border-red-500'
+                b_icon.value = 'text-red-500'
                 errors.value.bankStatement = 'Not in PDF format.';
                 break;
             case 'paySlip':
                 paySlip.value = null;
-                paySlipLabel.value = 'Upload Pay Slip';
+                paySlipLabel.value = 'Pay Slip';
                 paySlipStyle.value = 'border-red-500'
+                p_icon.value = 'text-red-500'
                 errors.value.paySlip = 'Not in PDF format.';
                 break;
         }
@@ -248,21 +257,27 @@ const validateInfo = () => {
     }
     if (!namibianId.value) {
         idStyle.value = 'border-red-500';
+        i_icon.value = 'text-red-500'
         isValid = false;
     } else {
         idStyle.value = 'border-gray-300';
+        i_icon.value = ''
     }
     if (!bankStatement.value) {
         bankStatementStyle.value = 'border-red-500';
+        b_icon.value = 'text-red-500'
         isValid = false;
     } else {
         bankStatementStyle.value = 'border-gray-300';
+        b_icon.value = ''
     }
     if (!paySlip.value) {
         paySlipStyle.value = 'border-red-500';
+        p_icon.value = 'text-red-500'
         isValid = false;
     } else {
         paySlipStyle.value = 'border-gray-300';
+        p_icon.value = ''
     }
     return isValid;
 };
@@ -312,10 +327,10 @@ const restoreLabel = (field) => {
             if (mobileNum.value === '') mobileNumLabel.value = 'Mobile Number';
             break;
         case 'amount':
-            if (amount.value === '') amountLabel.value = 'Amount(max-N$3000)';
+            if (amount.value === '') amountLabel.value = 'Amount - N$3000';
             break;
-        case 'installments':
-            if (installments.value === '') installmentsLabel.value = 'Installments(max-5)';
+        case 'ins':
+            if (installments.value === '') installmentsLabel.value = 'Installments';
             break;
         case 'email':
             if (email.value === '') emailLabel.value = 'Email(optional)';

@@ -3,8 +3,8 @@
     <div class="bg-white shadow-xl w-screen h-12 fixed z-50 left-0 top-0">
       
       <div class="flex flex-row items-center">
-        <div class="w-screen h-12 flex justify-start">
-          <img src="./assets/Asset 3.svg" alt="" class="w-3/5 h-4/5">
+        <div class="w-screen h-12 flex justify-start items-center">
+          <img src="./assets/Asset 3.svg" alt="" class="w-48 h-4/5">
         </div>
         <div @click="toggleContact" :class="togglerClass" class="mr-6 bg-limegreen w-12 h-9 rounded-full flex justify-center items-center cursor-pointer">
           <font-awesome-icon :icon="['fas', togglerIcon]" class="text-white "/>
@@ -34,7 +34,7 @@
         <about/>
       </div>
     </div>
-    <div class="footer bg-greenline w-screen z-50 md:mt-8">
+    <div class="footer bg-white w-screen z-50 md:mt-8">
       <greenlinefooter/>
     </div>
   </div>
@@ -59,7 +59,7 @@ function toggleContact(){
   if(contact.value === 'closed'){
     contact.value = 'opened'
     togglerIcon.value = 'envelope'
-    contactInfo.value = '0818669984'
+    contactInfo.value = '+2481 866 9984'
     contactClass = 'w-32 lg:w-40'
   }else if(contact.value === 'opened' && togglerIcon.value === 'envelope'){
     togglerIcon.value = 'arrow-left-long'

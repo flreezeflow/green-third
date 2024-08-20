@@ -95,6 +95,7 @@ header{
   background-color: #19d30036;
   height: 100%;
   padding-top: 7rem;
+  backdrop-filter: blur(2px);
 }
 
 .toggled{
