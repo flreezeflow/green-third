@@ -1,57 +1,62 @@
 <template>
     <div class="">
         <form @submit.prevent="handleSubmit" class="">
-            <div class="apply_div lg:w-2/5 rounded shadow-xl w-3/5 bg-white h-fit flex flex-col gap-4">
-                <div class="inputDiv mt-7">
-                    <label :for="name">{{ nameLabel }}</label>
-                    <input :class="nameInput" type="text" id="name" v-model="name" @focus="eraseLabel('name')" @blur="restoreLabel('name')">
-                    <p v-if="errors.name" class="text-red-500 text-sm text-center">{{ errors.name }}</p>
-                </div>
+            <div class="apply_div lg:w-2/5 rounded shadow-xl w-3/5 bg-white">
+                <div v-if="applyState ==='apply'" class="flex flex-col gap-4">
+                    <div class="inputDiv mt-7">
+                        <input :class="nameInput" type="text" id="name" v-model="name" @focus="eraseLabel('name')" @blur="restoreLabel('name')" :placeholder="nameLabel">
+                        <p v-if="errors.name" class="text-red-500 text-sm text-center">{{ errors.name }}</p>
+                    </div>
 
-                <div class="inputDiv">
-                    <label :for="email">{{ emailLabel }}</label>
-                    <input :class="emailInput" type="text" id="email" v-model="email" @focus="eraseLabel('email')" @blur="restoreLabel('email')">
-                    <p v-if="errors.email" class="text-red-500 text-sm text-center">{{ errors.email }}</p>
-                </div>
+                    <div class="inputDiv">
+                        <input :class="emailInput" type="text" id="email" v-model="email" @focus="eraseLabel('email')" @blur="restoreLabel('email')" :placeholder="emailLabel">
+                        <p v-if="errors.email" class="text-red-500 text-sm text-center">{{ errors.email }}</p>
+                    </div>
 
-                <div class="inputDiv">
-                    <label :for="mobileNum">{{ mobileNumLabel }}</label>
-                    <input :class="mobileInput" type="text" id="mobileNum" v-model="mobileNum" @focus="eraseLabel('mobileNum')" @blur="restoreLabel('mobileNum')">
-                    <p v-if="errors.mobileNum" class="text-red-500 text-sm text-center">{{ errors.mobileNum }}</p>
-                </div>
+                    <div class="inputDiv">
+                        <input :class="mobileInput" type="text" id="mobileNum" v-model="mobileNum" @focus="eraseLabel('mobileNum')" @blur="restoreLabel('mobileNum')" :placeholder="mobileNumLabel">
+                        <p v-if="errors.mobileNum" class="text-red-500 text-sm text-center">{{ errors.mobileNum }}</p>
+                    </div>
 
-                <div class="inputDiv">
-                    <label :for="amount">{{ amountLabel }}</label>
-                    <input :class="amountInput" type="text" id="amount" v-model="amount" @focus="eraseLabel('amount')" @blur="restoreLabel('amount')">
-                    <p v-if="errors.amount" class="text-red-500 text-sm text-center">{{ errors.amount }}</p>
-                </div>
+                    <div class="inputDiv">
+                        <input :class="amountInput" type="text" id="amount" v-model="amount" @focus="eraseLabel('amount')" @blur="restoreLabel('amount')" :placeholder="amountLabel">
+                        <p v-if="errors.amount" class="text-red-500 text-sm text-center">{{ errors.amount }}</p>
+                    </div>
 
-                <div class="inputDiv">
-                    <label :for="installments">{{ installmentsLabel }}</label>
-                    <input :class="installmentsInput" type="text" id="installments" v-model="installments" @focus="eraseLabel('installments')" @blur="restoreLabel('installments')">
-                    <p v-if="errors.installments" class="text-red-500 text-sm text-center">{{ errors.installments }}</p>
-                </div>
+                    <div class="inputDiv">
+                        <input :class="installmentsInput" type="text" id="installments" v-model="installments" @focus="eraseLabel('installments')" @blur="restoreLabel('installments')" :placeholder="installmentsLabel">
+                        <p v-if="errors.installments" class="text-red-500 text-sm text-center">{{ errors.installments }}</p>
+                    </div>
 
-                <div class="inputDivfile">
-                    <label :for="namibianId" :class="idStyle" class="block border rounded cursor-pointe text-center"><font-awesome-icon v-if="idStyle != 'border-red-500' || idStyle != 'border-limegreen'" :icon="['fas', 'upload']" :class="i_icon" class="text-black" /> {{ namibianIdLabel }}</label>
-                    <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="namibianId" @change="validateFile($event, 'namibianId')">
-                    <p v-if="errors.namibianId" class="text-red-500 text-sm text-center">{{ errors.namibianId }}</p>
-                </div>
+                    <div class="inputDivfile">
+                        <label :for="namibianId" :class="idStyle" class="block border rounded cursor-pointe text-center"><font-awesome-icon v-if="idStyle != 'border-red-500' || idStyle != 'border-limegreen'" :icon="['fas', 'upload']" :class="i_icon" class="text-black" /> {{ namibianIdLabel }}</label>
+                        <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="namibianId" @change="validateFile($event, 'namibianId')">
+                        <p v-if="errors.namibianId" class="text-red-500 text-sm text-center">{{ errors.namibianId }}</p>
+                    </div>
 
-                <div class="inputDivfile">
-                    <label :for="bankStatement" :class="bankStatementStyle" class="block border rounded cursor-pointe text-center"><font-awesome-icon :icon="['fas', 'upload']" :class="b_icon" class="text-black" /> {{ bankStatementLabel }}</label>
-                    <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="bankStatement" @change="validateFile($event, 'bankStatement')">
-                    <p v-if="errors.bankStatement" class="text-red-500 text-sm text-center">{{ errors.bankStatement }}</p>
-                </div>
+                    <div class="inputDivfile">
+                        <label :for="bankStatement" :class="bankStatementStyle" class="block border rounded cursor-pointe text-center"><font-awesome-icon :icon="['fas', 'upload']" :class="b_icon" class="text-black" /> {{ bankStatementLabel }}</label>
+                        <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="bankStatement" @change="validateFile($event, 'bankStatement')">
+                        <p v-if="errors.bankStatement" class="text-red-500 text-sm text-center">{{ errors.bankStatement }}</p>
+                    </div>
 
-                <div class="inputDivfile">
-                    <label :for="paySlip" :class="paySlipStyle" class="block border rounded cursor-pointe text-center"><font-awesome-icon :icon="['fas', 'upload']" :class="p_icon"  class="text-black" /> {{ paySlipLabel }}</label>
-                    <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="paySlip" @change="validateFile($event, 'paySlip')">
-                    <p v-if="errors.paySlip" class="text-red-500 text-sm text-center">{{ errors.paySlip }}</p>
+                    <div class="inputDivfile">
+                        <label :for="paySlip" :class="paySlipStyle" class="block border rounded cursor-pointe text-center"><font-awesome-icon :icon="['fas', 'upload']" :class="p_icon"  class="text-black" /> {{ paySlipLabel }}</label>
+                        <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="paySlip" @change="validateFile($event, 'paySlip')">
+                        <p v-if="errors.paySlip" class="text-red-500 text-sm text-center">{{ errors.paySlip }}</p>
+                    </div>
+                    <p class="text-center font-semibold">{{applyInfo}}</p>
+                    <div class="buttons">
+                        <button type="submit" class="bg-limegreen text-center w-4/5 mb-3 rounded outline-none">Apply</button>
+                    </div>
                 </div>
-                <p class="text-center font-semibold">{{applyInfo}}</p>
-                <div class="buttons">
-                    <button type="submit" class="bg-limegreen text-center w-4/5 mb-3 rounded outline-none">Apply</button>
+                <div v-if="applyState === 'load'" class="flex-col rounded loader_div">
+                    <p class="text-center mb-3">Please wait while we proccess your request...</p>
+                    <div id="loader"  class="loader"></div>
+                </div>
+                <div v-if="applyState === 'success'" class="flex-col rounded loader_div">
+                    <p class="text-center text-lg mb-3">Thank you for applying with Greenline Financial Solutions. We will contact you shortly</p>
+                    <button class="bg-gray-300 text-center w-4/5 mb-3 rounded outline-none text-white font-semibold" @click="re_apply">...Re-apply</button>
                 </div>
             </div>
         </form>
@@ -80,9 +85,9 @@ const paySlip = ref(null);
 // Labels
 const nameLabel = ref('Full Name');
 const mobileNumLabel = ref('Mobile Number');
-const amountLabel = ref('Amount');
-const installmentsLabel = ref('Installments');
-const emailLabel = ref('Email(optional)');
+const amountLabel = ref('Amount - N$3000');
+const installmentsLabel = ref('Installments (1 / 5 Months)');
+const emailLabel = ref('Email (optional)');
 const namibianIdLabel = ref('ID');
 const bankStatementLabel = ref('Bank Statement');
 const paySlipLabel = ref('Pay Slip');
@@ -108,6 +113,12 @@ const errors = ref({
     bankStatement: '',
     paySlip: ''
 });
+
+function re_apply(){
+    if(applyState.value != 'apply'){
+        applyState.value = 'apply'
+    }
+}
 
 const validateFile = (event, field) => {
     const file = event.target.files[0];
@@ -166,6 +177,8 @@ async function handleSubmit(){
     clearErrors();
     let isValid = validateInfo();
     if (isValid) {
+        applyState.value = 'load'
+        let response
         try {
             const url = 'http://localhost:8000/';
 
@@ -183,7 +196,7 @@ async function handleSubmit(){
             formData.append('bankStatementFile', bankStatement.value);
             formData.append('paySlipFile', paySlip.value);
 
-            const response = await axios.post(url, formData, {
+            response = await axios.post(url, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -193,6 +206,9 @@ async function handleSubmit(){
         } catch (error) {
             window.alert('Error during submission please try agian and if the message persist please contact us')
             console.error('Error during submission:', error);
+        } finally{
+            applyState.value = 'success'
+            console.log(applyState.value)
         }
     }
 };
@@ -277,7 +293,7 @@ const validateInfo = () => {
         isValid = false;
     } else {
         paySlipStyle.value = 'border-gray-300';
-        p_icon.value = ''
+        p_icon = ''
     }
     return isValid;
 };
@@ -329,11 +345,11 @@ const restoreLabel = (field) => {
         case 'amount':
             if (amount.value === '') amountLabel.value = 'Amount - N$3000';
             break;
-        case 'ins':
-            if (installments.value === '') installmentsLabel.value = 'Installments';
+        case 'installments':
+            if (installments.value === '') installmentsLabel.value = 'Installments (1 / 5 Months)';
             break;
         case 'email':
-            if (email.value === '') emailLabel.value = 'Email(optional)';
+            if (email.value === '') emailLabel.value = 'Email (optional)';
             break;
     }
 };

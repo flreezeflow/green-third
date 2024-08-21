@@ -1,10 +1,17 @@
 <template>
   <div class="grid grid-cols-1 grid-rows-1 lg:grid-rows-1">
     <div class="ad w-screen mt-10 h-fit row-span-1">
-      <div class="bg-limegreen w-screen h-36 lg:h-44 absolute opacity-40">
-        <p class="mt-16 text-center font-semibold">
-          Everyday loans for the average joe
-        </p>
+      <div class="ad_layer w-screen h-36 lg:h-44 absolute">
+        <div class="backdrop-blur-sm w-screen">
+          <h2 class="text-center font-bold ">NEED A QUICK FINANCIAL HAND?</h2>
+          <p class="text-center text-white font-semibold">Get a loan from us</p>
+        </div>
+        <div>
+
+        </div>
+        <div>
+
+        </div>
       </div>
       <img class="w-full h-36 lg:h-44" src="../assets/piggy bank.jpg" alt="money">
       <div class="flex justify-center items-center">
@@ -64,9 +71,8 @@
           </div>
         </div>
         
-        <div class="mt-5 lg:mb-5 flex flex-row">
-          <p class="font-semibold">Note:</p>
-          <p class="text-red-800">This amount might change once your loan is approved</p>
+        <div class="lg:mb-5 flex flex-row">
+          <p class="text-gray-300 text-center">*This amount might change once your loan is approved</p>
         </div>
       </div>
     </div>
