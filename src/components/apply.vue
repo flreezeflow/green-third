@@ -2,6 +2,7 @@
     <div class="">
         <form @submit.prevent="handleSubmit" class="">
             <div class="apply_div lg:w-2/5 rounded shadow-xl w-3/5 bg-white">
+                <h2 v-if="applyState ==='apply'" class="text-center mt-10 text-lg lg:text-2xl">Appply here</h2>
                 <div v-if="applyState ==='apply'" class="flex flex-col gap-4">
                     <div class="inputDiv mt-7">
                         <input :class="nameInput" type="text" id="name" v-model="name" @focus="eraseLabel('name')" @blur="restoreLabel('name')" :placeholder="nameLabel">
@@ -29,19 +30,19 @@
                     </div>
 
                     <div class="inputDivfile">
-                        <label :for="namibianId" :class="idStyle" class="block border rounded cursor-pointe text-center"><font-awesome-icon v-if="idStyle != 'border-red-500' || idStyle != 'border-limegreen'" :icon="['fas', 'upload']" :class="i_icon" class="text-black" /> {{ namibianIdLabel }}</label>
+                        <label :for="namibianId" :class="idStyle" class="block border rounded text-center"><font-awesome-icon v-if="idStyle != 'border-red-500' || idStyle != 'border-limegreen'" :icon="['fas', 'upload']" :class="i_icon" class="text-black" /> {{ namibianIdLabel }}</label>
                         <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="namibianId" @change="validateFile($event, 'namibianId')">
                         <p v-if="errors.namibianId" class="text-red-500 text-sm text-center">{{ errors.namibianId }}</p>
                     </div>
 
                     <div class="inputDivfile">
-                        <label :for="bankStatement" :class="bankStatementStyle" class="block border rounded cursor-pointe text-center"><font-awesome-icon :icon="['fas', 'upload']" :class="b_icon" class="text-black" /> {{ bankStatementLabel }}</label>
+                        <label :for="bankStatement" :class="bankStatementStyle" class="block border rounded text-center"><font-awesome-icon :icon="['fas', 'upload']" :class="b_icon" class="text-black" /> {{ bankStatementLabel }}</label>
                         <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="bankStatement" @change="validateFile($event, 'bankStatement')">
                         <p v-if="errors.bankStatement" class="text-red-500 text-sm text-center">{{ errors.bankStatement }}</p>
                     </div>
 
                     <div class="inputDivfile">
-                        <label :for="paySlip" :class="paySlipStyle" class="block border rounded cursor-pointe text-center"><font-awesome-icon :icon="['fas', 'upload']" :class="p_icon"  class="text-black" /> {{ paySlipLabel }}</label>
+                        <label :for="paySlip" :class="paySlipStyle" class="block border rounded text-center"><font-awesome-icon :icon="['fas', 'upload']" :class="p_icon"  class="text-black" /> {{ paySlipLabel }}</label>
                         <input class="w-full h-full opacity-0 cursor-pointer" type="file" id="paySlip" @change="validateFile($event, 'paySlip')">
                         <p v-if="errors.paySlip" class="text-red-500 text-sm text-center">{{ errors.paySlip }}</p>
                     </div>
@@ -55,6 +56,7 @@
                     <div id="loader"  class="loader"></div>
                 </div>
                 <div v-if="applyState === 'success'" class="flex-col rounded loader_div">
+                    <p class="text-3xl">😁</p>
                     <p class="text-center text-lg mb-3">Thank you for applying with Greenline Financial Solutions. We will contact you shortly</p>
                     <button class="bg-gray-300 text-center w-4/5 mb-3 rounded outline-none text-white font-semibold" @click="re_apply">...Re-apply</button>
                 </div>
@@ -85,8 +87,8 @@ const paySlip = ref(null);
 // Labels
 const nameLabel = ref('Full Name');
 const mobileNumLabel = ref('Mobile Number');
-const amountLabel = ref('Amount - N$3000');
-const installmentsLabel = ref('Installments (1 / 5 Months)');
+const amountLabel = ref('Amount (N$500 - N$3000)');
+const installmentsLabel = ref('Installments (1 - 5 Months)');
 const emailLabel = ref('Email (optional)');
 const namibianIdLabel = ref('ID');
 const bankStatementLabel = ref('Bank Statement');
@@ -122,56 +124,69 @@ function re_apply(){
 
 const validateFile = (event, field) => {
     const file = event.target.files[0];
-    if (file && file.type === "application/pdf") {
-        switch (field) {
-            case 'namibianId':
-                namibianId.value = file;
-                namibianIdLabel.value = file.name;
-                idStyle.value = 'border-limegreen';
-                i_icon.value = 'text-limegreen'
-                errors.value.namibianId = '';
-                break;
-            case 'bankStatement':
-                bankStatement.value = file;
-                bankStatementLabel.value = file.name;
-                bankStatementStyle.value = 'border-limegreen'
-                b_icon.value = 'text-limegreen'
-                errors.value.bankStatement = '';
-                break;
-            case 'paySlip':
-                paySlip.value = file;
-                paySlipLabel.value = file.name;
-                paySlipStyle.value = 'border-limegreen'
-                p_icon = 'text-limegreen'
-                errors.value.paySlip = '';
-                break;
-        }
-    } else {
-        switch (field) {
-            case 'namibianId':
-                namibianId.value = null;
-                namibianIdLabel.value = 'ID';
-                idStyle.value = 'border-red-500'
-                i_icon.value = 'text-red-500'
-                errors.value.namibianId = 'Not in PDF format.';
-                break;
-            case 'bankStatement':
-                bankStatement.value = null;
-                bankStatementLabel.value = 'Upload Bank Statement';
-                bankStatementStyle.value = 'border-red-500'
-                b_icon.value = 'text-red-500'
-                errors.value.bankStatement = 'Not in PDF format.';
-                break;
-            case 'paySlip':
-                paySlip.value = null;
-                paySlipLabel.value = 'Pay Slip';
-                paySlipStyle.value = 'border-red-500'
-                p_icon.value = 'text-red-500'
-                errors.value.paySlip = 'Not in PDF format.';
-                break;
+    const maxSizeInBytes = 2 * 1024 * 1024; // 2MB in bytes
+
+    if (file) {
+        if (file.type === "application/pdf" && file.size <= maxSizeInBytes) {
+            switch (field) {
+                case 'namibianId':
+                    namibianId.value = file;
+                    namibianIdLabel.value = file.name;
+                    idStyle.value = 'border-limegreen';
+                    i_icon.value = 'text-limegreen';
+                    errors.value.namibianId = '';
+                    break;
+                case 'bankStatement':
+                    bankStatement.value = file;
+                    bankStatementLabel.value = file.name;
+                    bankStatementStyle.value = 'border-limegreen';
+                    b_icon.value = 'text-limegreen';
+                    errors.value.bankStatement = '';
+                    break;
+                case 'paySlip':
+                    paySlip.value = file;
+                    paySlipLabel.value = file.name;
+                    paySlipStyle.value = 'border-limegreen';
+                    p_icon.value = 'text-limegreen';
+                    errors.value.paySlip = '';
+                    break;
+            }
+        } else {
+            // File is not a PDF or exceeds the size limit
+            let errorMessage = '';
+            if (file.type !== "application/pdf") {
+                errorMessage = 'Not in PDF format.';
+            } else if (file.size > maxSizeInBytes) {
+                errorMessage = 'File size exceeds 2MB.';
+            }
+
+            switch (field) {
+                case 'namibianId':
+                    namibianId.value = null;
+                    namibianIdLabel.value = 'ID';
+                    idStyle.value = 'border-red-500';
+                    i_icon.value = 'text-red-500';
+                    errors.value.namibianId = errorMessage;
+                    break;
+                case 'bankStatement':
+                    bankStatement.value = null;
+                    bankStatementLabel.value = 'Upload Bank Statement';
+                    bankStatementStyle.value = 'border-red-500';
+                    b_icon.value = 'text-red-500';
+                    errors.value.bankStatement = errorMessage;
+                    break;
+                case 'paySlip':
+                    paySlip.value = null;
+                    paySlipLabel.value = 'Pay Slip';
+                    paySlipStyle.value = 'border-red-500';
+                    p_icon.value = 'text-red-500';
+                    errors.value.paySlip = errorMessage;
+                    break;
+            }
         }
     }
 };
+
 
 async function handleSubmit(){
     clearErrors();
@@ -201,13 +216,18 @@ async function handleSubmit(){
                     'Content-Type': 'multipart/form-data',
                 },
             });
+
+            if(response.data.message){
+                applyState.value = 'success'
+            }
             
             console.log(response.data.message)
         } catch (error) {
             window.alert('Error during submission please try agian and if the message persist please contact us')
             console.error('Error during submission:', error);
+            applyState.value = 'apply'
         } finally{
-            applyState.value = 'success'
+            // applyState.value = 'success'
             console.log(applyState.value)
         }
     }
@@ -254,8 +274,8 @@ const validateInfo = () => {
     if (!amount.value) {
         amountInput.value = 'error';
         isValid = false;
-    } else if(amount.value > 3000){
-        errors.value.amount = 'Max loan allowed is N$3000';
+    } else if(amount.value > 3000 || amount.value < 500){
+        errors.value.amount = 'Invalid loan amount';
         amountInput.value = 'error';
         isValid = false;
     }else{
@@ -264,9 +284,9 @@ const validateInfo = () => {
     if (!installments.value) {
         installmentsInput.value = 'error';
         isValid = false;
-    } else if(installments.value > 5){
+    } else if(installments.value > 5 || installments.value < 0){
         installmentsInput.value = 'error';
-        errors.value.installments = 'Max installments allowed is 5';
+        errors.value.installments = 'Invalid installment/s amount';
         isValid = false;
     }else{
         installmentsInput.value = 'input';
@@ -343,10 +363,10 @@ const restoreLabel = (field) => {
             if (mobileNum.value === '') mobileNumLabel.value = 'Mobile Number';
             break;
         case 'amount':
-            if (amount.value === '') amountLabel.value = 'Amount - N$3000';
+            if (amount.value === '') amountLabel.value = 'Amount (N$500 - N$3000)';
             break;
         case 'installments':
-            if (installments.value === '') installmentsLabel.value = 'Installments (1 / 5 Months)';
+            if (installments.value === '') installmentsLabel.value = 'Installments (1 - 5 Months)';
             break;
         case 'email':
             if (email.value === '') emailLabel.value = 'Email (optional)';

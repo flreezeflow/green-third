@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 364 135.29">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 67px;
+        letter-spacing: .11em;
+        fill: #fff;
+      }
+
+      .cls-1, .cls-2 {
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+      }
+
+      .cls-3 {
+        fill: lime;
+      }
+
+      .cls-2 {
+        font-size: 16px;
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <rect class="cls-3" x="0" y="71.84" width="364" height="7.45" rx=".88" ry=".88" transform="translate(364 151.13) rotate(180)"/>
+      <rect class="cls-3" x="240" y="100.84" width="124" height="7.45" rx=".88" ry=".88" transform="translate(604 209.13) rotate(180)"/>
+      <rect class="cls-3" x="273" y="127.84" width="91" height="7.45" rx=".88" ry=".88" transform="translate(637 263.13) rotate(180)"/>
+      <text class="cls-1" transform="translate(28.94 56.08) scale(.78 1)"><tspan x="0" y="0">GREENLINE</tspan></text>
+      <text class="cls-2" transform="translate(32.3 109.8) scale(1.14 1)"><tspan x="0" y="0">FINANCIAL SOLUTIONS CC</tspan></text>
+    </g>
+  </g>
+</svg>

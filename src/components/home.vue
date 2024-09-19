@@ -15,8 +15,8 @@
       </div>
       <img class="w-full h-36 lg:h-44" src="../assets/piggy bank.jpg" alt="money">
       <div class="flex justify-center items-center">
-        <div class="lg:absolute top-48 bg-white z-40 h-32 rounded-b-lg shadow-xl lg:w-4/5 w-screen rounded-lg flex flex-col justify-center">
-          <p class="text-center text-md ">Use our loan calculator to guage how big of a loan is convenient for your purposes</p>
+        <div class="lg:absolute top-48 bg-white z-40 h-32 rounded-b-lg shadow-xl lg:w-4/5 w-screen rounded-lg flex flex-col justify-center flex-wrap">
+          <p class="text-center">One of the <span class="text-limegreen">lowest rates</span> you can find at just <span class="text-limegreen">20%</span>. Check out our <span class="text-limegreen">calculator below</span>  to guage how much you will need </p>
         </div>
       </div>
     </div>

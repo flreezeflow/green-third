@@ -9,8 +9,8 @@
                 </div>
 
                 <div class="flex flex-row gap-1 lg:text-2xl">
-                    <h2 class="">What You Need</h2>
-                    <h2 class="text-white">To Apply</h2>
+                    <h2 class="">What You Need <span class="text-white">To Apply</span></h2>
+                    <!-- <h2 class="text-white">To Apply</h2> -->
                 </div>
                 <div class="md:w-full w-4/5 flex flex-row justify-between items-center gap-2 ml-5 md:ml-10">
                     
@@ -40,8 +40,7 @@
                 </div>
 
                 <div class="flex flex-row justify-end gap-1 lg:text-2xl">
-                  <h2 class="">How Our</h2>
-                  <h2 class="mr-6 text-white">Calculator Works</h2>
+                  <h2 class="mr-6">How Our <span class="text-white">Calculator Works</span></h2>
                 </div>
                 
                 <div class="flex flex-row justify-between items-center gap-3 mr-5">
@@ -79,8 +78,7 @@
                 </div>
 
                 <div class="flex flex-row gap-1 lg:text-2xl">
-                    <h2 class="ml-6">After You</h2>
-                    <h2 class="text-white">Apply</h2>
+                    <h2 class="ml-6">After You <span class="text-white">Apply</span></h2>
                 </div>
                 
                 <div class="flex flex-row md:h-32 justify-between max-md:items-center ml-5">

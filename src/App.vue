@@ -1,5 +1,5 @@
 <template>
-  <header class="">
+  <header class="l">
     <div class="bg-white shadow-xl w-screen h-12 fixed z-50 left-0 top-0">
       
       <div class="flex flex-row items-center">

@@ -27,6 +27,8 @@ header{
   outline: none;
   border: 1px solid #dfdddd;
   border-radius: 5px;
+  padding: 0 10px;
+  font-size: .9rem;
 }
 
 .inputDiv .error{
